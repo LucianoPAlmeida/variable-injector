@@ -4,51 +4,55 @@
 //
 //  Created by Luciano Almeida on 03/11/18.
 //
-
-struct ArgumentsHandler {
-    var _parsedArgs: [Argument] = []
+public struct ArgumentsHandler {
+    public internal(set) var _parsedArgs: [Argument] = []
     
-    init(args: [String]) {
+    public init(args: [String]) {
         _parsedArgs = ArgumentsHandler.arguments(from: args)
     }
     
-    func argumentValue(for arg: String) -> String? {
+    public func argumentValue(for arg: String) -> String? {
         return argumentValues(for: arg).first
     }
     
-    func argumentValues(for arg: String) -> [String] {
+    public func argumentValues(for arg: String) -> [String] {
         return _parsedArgs.first(where: { $0.name == arg })?.values ?? []
     }
     
-    static func arguments(from args: [String]) -> [Argument] {
+    private static func arguments(from args: [String]) -> [Argument] {
         var current: Argument!
         var arguments: [Argument] = []
-        for arg in args {
+        var idx = 0
+        repeat {
+            var arg = args[idx]
             if arg.starts(with: "--") {
-                if current != nil {
-                    arguments.append(current)
-                }
-                var mutableArg = arg
-                mutableArg.removeSubrange(...arg.index(arg.startIndex, offsetBy: 1))
-                current = Argument(name: mutableArg)
+                arg.removeSubrange(...arg.index(arg.startIndex, offsetBy: 1))
+                current = Argument(name: arg)
+                arguments.append(current)
             } else if current != nil {
                 current.add(value: arg)
+                arguments[arguments.endIndex.advanced(by: -1)] = current
             }
-        }
+            idx+=1
+        } while idx < args.count
         return arguments
     }
 }
 
-struct Argument: Equatable, Hashable {
-    private(set) var name: String
-    private(set) var values: [String] = []
+public struct Argument: Equatable {
+    public private(set) var name: String
+    public private(set) var values: [String] = []
     
-    init(name: String) {
+    public init(name: String) {
         self.name = name
     }
     
-    mutating func add(value: String) {
-        self.values.append(value)
+    public init(name: String, values: [String]) {
+        self.init(name: name)
+        self.values = values
     }
     
+    public mutating func add(value: String) {
+        self.values.append(value)
+    }
 }
