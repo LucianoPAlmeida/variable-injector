@@ -6,14 +6,14 @@
 [![Xcode](https://img.shields.io/badge/Xcode-10.0-blue.svg)](https://developer.apple.com/xcode)
 [![SPM](https://img.shields.io/badge/SPM-orange.svg)](https://swift.org/package-manager/)
 
-Variable injector is a very simple project with the goal of inject CI pipelines envirionment variables values into **Swift** code  static values before compilation and Continuous deployment to a specific envirionment(Development, Testing or Production) where we can define the values injected for each build and deployment e.g. a API url that the App uses and is diferent for each envirionment. Also it allows us to not expose our production keys and values in statically in our code.
+Variable injector is a very simple project with the goal of inject CI pipelines environment variables values into **Swift** code  static values before compilation and Continuous deployment to a specific environment(Development, Testing or Production) where we can define the values injected for each build and deployment e.g. an API URL that the App uses and is different for each environment. Also, it allows us to not expose our production keys and values in statically in our code.
 
-The project uses [SwiftSyntax](https://github.com/apple/swift-syntax) to perform a reliable replace the static literal strings with the CI envirionment values. 
+The project uses [SwiftSyntax](https://github.com/apple/swift-syntax) to perform a reliable replace the static literal strings with the CI environment values. 
 
 ## Installation
 
 ### Manually Download
-We can manually download the binaries releases and export to the path on the CI pipeline
+We can manually download the binary from the [releases](https://github.com/LucianoPAlmeida/variable-injector/releases) and export to the path on the CI pipeline
 
 ```sh
 cd /tmp
@@ -41,7 +41,7 @@ With the envirionments static declarations matching the pattern
 variable-injector --file ${SRCROOT}/Envirionment/CI.swift 
 
 ```
-If envirionment variables with those the name, as in the example you have the `SERVICE_PROD_KEY` and `OTHER_PROD_KEY` defined on the build machine for this pipeline. The injector you replace the string literal with the envirionment variable value. 
+If environment variables with those names, as in the example you have the `SERVICE_PROD_KEY` and `OTHER_PROD_KEY` are defined on the build machine for this pipeline the injector you replace the string literal with the envirionment variable value.  
 
 Example of the file after the substitution. 
 
@@ -59,7 +59,7 @@ variable-injector --file ${SRCROOT}/Envirionment/CI.swift --ignore OTHER_PROD_KE
 
 ```
 
-After that we can just proceed with the build, archive and other steps of our CI/CD pipeline. 
+After that we can just proceed to the build, archive and other steps of our CI/CD pipeline. 
 
 ## Licence
 Variable Injector is released under the [MIT License](https://opensource.org/licenses/MIT).
