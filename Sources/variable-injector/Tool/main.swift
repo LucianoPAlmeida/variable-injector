@@ -1,6 +1,6 @@
-
-import Foundation
 import SwiftSyntax
+import Foundation
+import variable_injector_core
 
 // Handling arguments
 let arguments = ArgumentsHandler(args: CommandLine.arguments)

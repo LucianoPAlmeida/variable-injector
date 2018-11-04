@@ -8,20 +8,20 @@
 import Foundation
 import SwiftSyntax
 
-class EnvirionmentVariableLiteralRewriter: SyntaxRewriter {
+public class EnvirionmentVariableLiteralRewriter: SyntaxRewriter {
     
     static let envVarPatter: String = "\"\\$\\(\\w+\\)\""
     
-    var ignoredLiteralValues: Set<String> = []
-    var includedLiteralValues: Set<String> = []
+    public var ignoredLiteralValues: Set<String> = []
+    public var includedLiteralValues: Set<String> = []
     
-    convenience init(includedLiteralValues: [String], ignoredLiteralValues: [String]) {
+    public convenience init(includedLiteralValues: [String], ignoredLiteralValues: [String]) {
         self.init()
         self.ignoredLiteralValues = Set(ignoredLiteralValues)
         self.includedLiteralValues = Set(includedLiteralValues)
     }
     
-    override func visit(_ token: TokenSyntax) -> Syntax {
+    override public func visit(_ token: TokenSyntax) -> Syntax {
         guard case .stringLiteral(let text) = token.tokenKind else { return token }
     
         //Matching ENV var pattern e.g. $(ENV_VAR)

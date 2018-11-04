@@ -1,7 +1,7 @@
 import XCTest
 import Foundation
 
-import variable_injector
+import variable_injector_core
 
 final class ArgumentsHandlerTests: XCTestCase {
     
@@ -25,5 +25,6 @@ final class ArgumentsHandlerTests: XCTestCase {
     
     static var allTests = [
         ("testParseParameters", testParseParameters),
+        ("testParseParametersWithEmpty", testParseParametersWithEmpty)
     ]
 }
