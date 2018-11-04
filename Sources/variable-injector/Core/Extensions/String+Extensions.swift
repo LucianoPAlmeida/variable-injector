@@ -13,4 +13,12 @@ extension String {
                      range: nil,
                      locale: nil) != nil
     }
+    
+    public static func * (string: String, times: Int) -> String {
+        var result: String = ""
+        for _ in 0..<times {
+            result.append(string)
+        }
+        return result
+    }
 }

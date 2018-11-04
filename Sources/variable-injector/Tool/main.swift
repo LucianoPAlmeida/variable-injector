@@ -2,6 +2,9 @@ import SwiftSyntax
 import Foundation
 import variable_injector_core
 
+//Separator
+let printSeparator = "=" * 70
+
 // Handling arguments
 let arguments = ArgumentsHandler(args: CommandLine.arguments)
 
@@ -16,9 +19,10 @@ let varLiteralsToIgnore = arguments.argumentValues(for: "ignore")
 for file in files {
     let url = URL(fileURLWithPath: file)
     
-    print("========================================================================\n")
+    print("\(printSeparator)\n")
     print("FILE: \(url.lastPathComponent)")
-    
+    print("\(printSeparator)\n")
+
     let sourceFile = try SyntaxTreeParser.parse(url)
     
     let envVarRewriter = EnvirionmentVariableLiteralRewriter(ignoredLiteralValues: varLiteralsToIgnore)
@@ -29,7 +33,7 @@ for file in files {
     
     try? contents.write(to: url, atomically: true, encoding: .utf8)
     
-    print("========================================================================\n")
+    print("\(printSeparator)\n")
     print(contents)
 }
 
