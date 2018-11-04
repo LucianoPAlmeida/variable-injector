@@ -1,7 +1,7 @@
 import XCTest
 
-import VariableInjectorTests
+import variable_injectorTests
 
 var tests = [XCTestCaseEntry]()
-tests += VariableInjectorTests.allTests()
+tests += variable_injectorTests.allTests()
 XCTMain(tests)

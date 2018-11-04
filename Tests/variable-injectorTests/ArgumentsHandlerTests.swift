@@ -1,7 +1,7 @@
 import XCTest
 import Foundation
 
-import VariableInjector
+import variable_injector
 
 final class ArgumentsHandlerTests: XCTestCase {
     

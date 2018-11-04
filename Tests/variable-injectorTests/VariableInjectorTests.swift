@@ -1,5 +1,5 @@
 import XCTest
-import VariableInjector
+import variable_injector
 
 final class VariableInjectorTests: XCTestCase {
     func testVariableSubstitution() throws {
