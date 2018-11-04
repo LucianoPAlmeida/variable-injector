@@ -16,7 +16,8 @@ let varLiteralsToIgnore = arguments.argumentValues(for: "ignore")
 for file in files {
     let url = URL(fileURLWithPath: file)
     
-    print("FILE: \(url.lastPathComponent)\n\n")
+    print("========================================================================\n")
+    print("FILE: \(url.lastPathComponent)")
     
     let sourceFile = try SyntaxTreeParser.parse(url)
     

@@ -28,6 +28,6 @@ let package = Package(
             path: "Sources/variable-injector/Tool"),
         .testTarget(
             name: "variable-injectorTests",
-            dependencies: ["variable-injector"]),
+            dependencies: ["variable-injector-core"]),
     ]
 )
