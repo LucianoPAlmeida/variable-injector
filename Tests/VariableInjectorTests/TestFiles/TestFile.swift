@@ -8,6 +8,6 @@
 import Foundation
 
 class Envirionment {
-    static var a: String = "$(PATH)"
+    static var a: String = "$(ENV_VAR)"
     var b: String = ""
 }

@@ -10,16 +10,22 @@ import SwiftSyntax
 
 class EnvirionmentVariableLiteralRewriter: SyntaxRewriter {
     
-    var ignoredLiteralVariables: Set<String> = []
-    var includedLiteralVariables: Set<String> = []
+    static let envVarPatter: String = "\"\\$\\(\\w+\\)\""
+    
+    var ignoredLiteralValues: Set<String> = []
+    var includedLiteralValues: Set<String> = []
+    
+    convenience init(includedLiteralValues: [String], ignoredLiteralValues: [String]) {
+        self.init()
+        self.ignoredLiteralValues = Set(ignoredLiteralValues)
+        self.includedLiteralValues = Set(includedLiteralValues)
+    }
     
     override func visit(_ token: TokenSyntax) -> Syntax {
         guard case .stringLiteral(let text) = token.tokenKind else { return token }
-        
-        print("String literal: \(text)")
-        
+    
         //Matching ENV var pattern e.g. $(ENV_VAR)
-        guard text.matches(regex: "\"\\$\\(\\w+\\)\"") else { return token }
+        guard text.matches(regex: EnvirionmentVariableLiteralRewriter.envVarPatter) else { return token }
         
         guard shouldPerformSubstitution(for: text) else { return token }
         
@@ -28,12 +34,12 @@ class EnvirionmentVariableLiteralRewriter: SyntaxRewriter {
         guard let envValue = ProcessInfo.processInfo.environment[envVar] else {
             return token
         }
-    
+        print("Injecting ENV_VAR: \(text), value: \(envValue)")
         return token.withKind(.stringLiteral("\"\(envValue)\""))
     }
     
     private func shouldPerformSubstitution(for text: String) -> Bool {
-        return includedLiteralVariables.contains(text) || !ignoredLiteralVariables.contains(text)
+        return includedLiteralValues.contains(text) || !ignoredLiteralValues.contains(text)
     }
     
     private func extractTextEnvVariableName(text: String) -> String {
