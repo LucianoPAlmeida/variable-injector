@@ -2,6 +2,9 @@
 
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://opensource.org/licenses/MIT)
 [![Travis](https://img.shields.io/travis/LucianoPAlmeida/variable-injector.svg)](https://travis-ci.org/LucianoPAlmeida/variable-injector)
+[![Swift](https://img.shields.io/badge/Swift-4.2-orange.svg)](https://swift.org)
+[![Xcode](https://img.shields.io/badge/Xcode-10.0-blue.svg)](https://developer.apple.com/xcode)
+[![SPM](https://img.shields.io/badge/SPM-orange.svg)](https://swift.org/package-manager/)
 
 Variable injector is a very simple project with the goal of inject CI pipelines envirionment variables values into **Swift** code  static values before compilation and Continuous deployment to a specific envirionment(Development, Testing or Production) where we can define the values injected for each build and deployment e.g. a API url that the App uses and is diferent for each envirionment. Also it allows us to not expose our production keys and values in statically in our code.
 
