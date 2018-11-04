@@ -10,7 +10,6 @@ guard !files.isEmpty else {
     fatalError("The path to at least one file where the variables will be injected should be passed. Use --file $path-to-file")
 }
 
-let varLiteralsToInclude = arguments.argumentValues(for: "include")
 let varLiteralsToIgnore = arguments.argumentValues(for: "ignore")
 
 // Loading files
