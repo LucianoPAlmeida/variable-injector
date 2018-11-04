@@ -1,5 +1,5 @@
 language: swift
-osx_image: xcode9
+osx_image: xcode10
 xcode_sdk: iphonesimulator11.0
 script:
     - swift build
