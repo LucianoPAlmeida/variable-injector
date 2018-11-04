@@ -4,3 +4,5 @@ xcode_sdk: iphonesimulator11.0
 script:
     - swift build
     - swift test
+after_success:
+    - bash <(curl -s https://codecov.io/bash) -J 'variable-injector'
