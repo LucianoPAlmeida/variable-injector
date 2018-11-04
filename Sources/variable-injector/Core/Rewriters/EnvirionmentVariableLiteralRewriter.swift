@@ -16,6 +16,8 @@ public class EnvirionmentVariableLiteralRewriter: SyntaxRewriter {
     
     private var envirionment: [String: String] = [:]
     
+    public var logger: Logger?
+    
     public init(envirionment: [String: String] = ProcessInfo.processInfo.environment) {
         self.envirionment = envirionment
     }
@@ -40,7 +42,7 @@ public class EnvirionmentVariableLiteralRewriter: SyntaxRewriter {
         guard let envValue = envirionment[envVar] else {
             return token
         }
-        print("Injecting ENV_VAR: \(text), value: \(envValue)")
+        logger?.log(message: "Injecting ENV_VAR: \(text), value: \(envValue)")
         return token.withKind(.stringLiteral("\"\(envValue)\""))
     }
     

@@ -5,6 +5,9 @@ import variable_injector_core
 //Separator
 let printSeparator = "=" * 70
 
+// Logger
+var logger: Logger?
+
 // Handling arguments
 let arguments = ArgumentsHandler(args: CommandLine.arguments)
 
@@ -15,17 +18,29 @@ guard !files.isEmpty else {
 
 let varLiteralsToIgnore = arguments.argumentValues(for: "ignore")
 
+let isVerbose = arguments.contains(arg: "verbose")
+
+if isVerbose {
+    logger = Logger()
+}
+
 // Loading files
 for file in files {
     let url = URL(fileURLWithPath: file)
     
-    print("\(printSeparator)\n")
-    print("FILE: \(url.lastPathComponent)")
-    print("\(printSeparator)\n")
+    guard FileManager.default.fileExists(atPath: file) else {
+        logger?.log(message: "File not found. Skipping: \(url)")
+        continue;
+    }
+    
+    logger?.log(message: "\(printSeparator)\n")
+    logger?.log(message: "FILE: \(url.lastPathComponent)")
+    logger?.log(message: "\(printSeparator)\n")
 
     let sourceFile = try SyntaxTreeParser.parse(url)
     
     let envVarRewriter = EnvirionmentVariableLiteralRewriter(ignoredLiteralValues: varLiteralsToIgnore)
+    envVarRewriter.logger = logger
     let result = envVarRewriter.visit(sourceFile)
     
     var contents: String = ""
@@ -33,7 +48,6 @@ for file in files {
     
     try? contents.write(to: url, atomically: true, encoding: .utf8)
     
-    print("\(printSeparator)\n")
-    print(contents)
+    logger?.log(message: "\(printSeparator)\n")
+    logger?.log(message: contents)
 }
-

@@ -11,6 +11,10 @@ public struct ArgumentsHandler {
         _parsedArgs = ArgumentsHandler.arguments(from: args)
     }
     
+    public func contains(arg: String) -> Bool {
+        return _parsedArgs.contains { $0.name == arg }
+    }
+    
     public func argumentValue(for arg: String) -> String? {
         return argumentValues(for: arg).first
     }
