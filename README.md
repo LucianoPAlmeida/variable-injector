@@ -10,8 +10,15 @@ Variable injector is a very simple project with the goal of inject CI pipelines 
 ## Installation
 
 ### Manually Download
+We can manually download the binaries releases and export to the path on the CI pipeline
 
-
+```sh
+cd /tmp
+curl -OL https://github.com/LucianoPAlmeida/variable-injector/releases/download/0.1.0/binaries.zip
+unzip binaries.zip 
+cp -f binaries/variable-injector /usr/local/bin/variable-injector
+```
+With that installed and on our `bin` folder, now we can use it.
 
 
 ## Usage
