@@ -13,12 +13,18 @@ public class EnvirionmentVariableLiteralRewriter: SyntaxRewriter {
     static let envVarPatter: String = "\"\\$\\(\\w+\\)\""
     
     public var ignoredLiteralValues: Set<String> = []
-    public var includedLiteralValues: Set<String> = []
     
-    public convenience init(includedLiteralValues: [String], ignoredLiteralValues: [String]) {
-        self.init()
+    private var envirionment: [String: String] = [:]
+    
+    public init(envirionment: [String: String] = ProcessInfo.processInfo.environment) {
+        self.envirionment = envirionment
+    }
+    
+    public convenience init(
+        envirionment: [String: String] = ProcessInfo.processInfo.environment,
+        ignoredLiteralValues: [String]) {
+        self.init(envirionment: envirionment)
         self.ignoredLiteralValues = Set(ignoredLiteralValues)
-        self.includedLiteralValues = Set(includedLiteralValues)
     }
     
     override public func visit(_ token: TokenSyntax) -> Syntax {
@@ -27,11 +33,11 @@ public class EnvirionmentVariableLiteralRewriter: SyntaxRewriter {
         //Matching ENV var pattern e.g. $(ENV_VAR)
         guard text.matches(regex: EnvirionmentVariableLiteralRewriter.envVarPatter) else { return token }
         
-        guard shouldPerformSubstitution(for: text) else { return token }
-        
         let envVar = extractTextEnvVariableName(text: text)
         
-        guard let envValue = ProcessInfo.processInfo.environment[envVar] else {
+        guard shouldPerformSubstitution(for: envVar) else { return token }
+        
+        guard let envValue = envirionment[envVar] else {
             return token
         }
         print("Injecting ENV_VAR: \(text), value: \(envValue)")
@@ -39,7 +45,7 @@ public class EnvirionmentVariableLiteralRewriter: SyntaxRewriter {
     }
     
     private func shouldPerformSubstitution(for text: String) -> Bool {
-        return includedLiteralValues.contains(text) || !ignoredLiteralValues.contains(text)
+        return !ignoredLiteralValues.contains(text)
     }
     
     private func extractTextEnvVariableName(text: String) -> String {

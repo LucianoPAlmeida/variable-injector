@@ -16,8 +16,7 @@ let varLiteralsToIgnore = arguments.argumentValues(for: "ignore")
 let url = URL(fileURLWithPath: file)
 let sourceFile = try SyntaxTreeParser.parse(url)
 
-let envVarRewriter = EnvirionmentVariableLiteralRewriter(includedLiteralValues: varLiteralsToInclude,
-                                                         ignoredLiteralValues: varLiteralsToIgnore)
+let envVarRewriter = EnvirionmentVariableLiteralRewriter(ignoredLiteralValues: varLiteralsToIgnore)
 let result = envVarRewriter.visit(sourceFile)
 
 var contents: String = ""
