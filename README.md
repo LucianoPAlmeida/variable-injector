@@ -8,7 +8,12 @@ This project is a work in progress not usable yet.
 Variable injector is a very simple project with the goal of inject CI pipelines envirionment variables values into Swift code static values before compilation and Continuous deployment to a specific envirionment(Development, Testing or Production) where we can define the values injected for each build and deployment e.g. a API url that the App uses and is diferent for each envirionment. Also it allows us to not expose our production keys and values in statically in our code.
 
 ## Installation
-TODO:
+
+### Manually Download
+
+
+
+
 ## Usage
 
 You should have a class or struct with your envirionment variables declaration following the $(VAR_NAME) pattern.
