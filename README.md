@@ -17,9 +17,10 @@ We can manually download the binary from the [releases](https://github.com/Lucia
 
 ```sh
 cd /tmp
-curl -OL https://github.com/LucianoPAlmeida/variable-injector/releases/download/0.1.0/binaries.zip
-unzip binaries.zip 
-cp -f binaries/variable-injector /usr/local/bin/variable-injector
+curl -OL https://github.com/LucianoPAlmeida/variable-injector/releases/download/0.2.0/x86_64-apple-macosx10.10.zip
+unzip x86_64-apple-macosx10.10.zip
+cp -f x86_64-apple-macosx10.10/release/variable-injector /usr/local/bin/variable-injector
+cp -f x86_64-apple-macosx10.10/release/libSwiftSyntax.dylib /usr/local/lib/libSwiftSyntax.dylib
 ```
 With that installed and on our `bin` folder, now we can use it.
 
