@@ -13,7 +13,8 @@ let arguments = ArgumentsHandler(args: CommandLine.arguments)
 
 let files = arguments.argumentValues(for: "file")
 guard !files.isEmpty else {
-    fatalError("The path to at least one file where the variables will be injected should be passed. Use --file $path-to-file")
+    print("The path to at least one file where the variables will be injected should be passed. Use --file $path-to-file")
+    exit(1)
 }
 
 let varLiteralsToIgnore = arguments.argumentValues(for: "ignore")
