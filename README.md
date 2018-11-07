@@ -22,6 +22,9 @@ unzip x86_64-apple-macosx10.10.zip
 cp -f x86_64-apple-macosx10.10/release/variable-injector /usr/local/bin/variable-injector
 cp -f x86_64-apple-macosx10.10/release/libSwiftSyntax.dylib /usr/local/lib/libSwiftSyntax.dylib
 ```
+
+Or to install the lastest version just run the [install-binary.sh](scripts/install-binary.sh)
+
 With that installed and on our `bin` folder, now we can use it.
 
 
