@@ -63,6 +63,13 @@ variable-injector --file ${SRCROOT}/Envirionment/CI.swift --ignore OTHER_PROD_KE
 
 ```
 
+And also, to see the logs of variables, values and source output you can use `--verbose` 
+
+```sh
+variable-injector --file ${SRCROOT}/Envirionment/CI.swift --verbose
+
+```
+
 After that we can just proceed to the build, archive and other steps of our CI/CD pipeline. 
 
 ## Licence
