@@ -65,6 +65,9 @@ variable-injector --file ${SRCROOT}/Envirionment/CI.swift --ignore OTHER_PROD_KE
 
 And also, to see the logs of variables, values and source output you can use `--verbose` 
 
+**IMPORTANT** 
+The verbose mode you print the values of your environment variables on the logs. So you may be careful and use it only for debug porpuses.
+
 ```sh
 variable-injector --file ${SRCROOT}/Envirionment/CI.swift --verbose
 
