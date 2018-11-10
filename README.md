@@ -63,6 +63,20 @@ variable-injector --file ${SRCROOT}/Envirionment/CI.swift --ignore OTHER_PROD_KE
 
 ```
 
+### Using as Run Script in Build Phases
+
+You can add the script call for variable replacement on your build phases. We just have setup our Development keys in our local machine as environment variables and build the project.
+
+**Important:** Is very important to add this Run Script phase before the Compile Sources phase. So the variables will be replaced and then compiled :))
+
+```sh
+if which variable-injector >/dev/null; then
+  variable-injector --file ${SRCROOT}/YourProject/YourGroupFolderPath/File.swift --verbose # Pass your paramenters
+else
+  echo "Warning: Swift Variable Injector not installed, download from https://github.com/LucianoPAlmeida/variable-injector"
+fi
+```
+
 And also, to see the logs of variables, values and source output you can use `--verbose` 
 
 **IMPORTANT** 
