@@ -39,7 +39,7 @@ Example:
    }
 ```
 
-With the envirionments static declarations matching the pattern
+With the environments static declarations matching the pattern
 
 ```sh
 variable-injector --file ${SRCROOT}/Envirionment/CI.swift 
@@ -56,13 +56,6 @@ Example of the file after the substitution.
    }
 ```
 
-We can ignore patterns that match $(ENV_VAR) to avoid the replace. 
-
-```sh
-variable-injector --file ${SRCROOT}/Envirionment/CI.swift --ignore OTHER_PROD_KEY
-
-```
-
 ### Using as Run Script in Build Phases
 
 You can add the script call for variable replacement on your build phases. We just have setup our Development keys in our local machine as environment variables and build the project.
@@ -75,6 +68,15 @@ if which variable-injector >/dev/null; then
 else
   echo "Warning: Swift Variable Injector not installed, download from https://github.com/LucianoPAlmeida/variable-injector"
 fi
+```
+
+### Options
+
+We can ignore patterns that match $(ENV_VAR) to avoid the replace. 
+
+```sh
+variable-injector --file ${SRCROOT}/Envirionment/CI.swift --ignore OTHER_PROD_KEY
+
 ```
 
 And also, to see the logs of variables, values and source output you can use `--verbose` 
