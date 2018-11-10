@@ -30,6 +30,8 @@ With that installed and on our `bin` folder, now we can use it.
 
 ## Usage
 
+For a detailed example of using this, check out the article [Continuous Integration Environment Variables in iOS projects using Swift](https://medium.com/@lucianoalmeida1/continuous-integration-environment-variables-in-ios-projects-using-swift-f72e50176a91) on [Medium](https://medium.com).
+
 You should have a class or struct with your envirionment variables declaration following the $(VAR_NAME) pattern.
 Example:
 ```swift
@@ -39,7 +41,7 @@ Example:
    }
 ```
 
-With the envirionments static declarations matching the pattern
+With the environments static declarations matching the pattern
 
 ```sh
 variable-injector --file ${SRCROOT}/Envirionment/CI.swift 
@@ -55,6 +57,22 @@ Example of the file after the substitution.
       static var otherAPIKey: String = "dsa76d7adas7d6as87d6as78d6aklre423s7d6as8d7s6"
    }
 ```
+
+### Using as Run Script in Build Phases
+
+You can add the script call for variable replacement on your build phases. We just have setup our Development keys in our local machine as environment variables and build the project.
+
+**Important:** Is very important to add this Run Script phase before the Compile Sources phase. So the variables will be replaced and then compiled :))
+
+```sh
+if which variable-injector >/dev/null; then
+  variable-injector --file ${SRCROOT}/YourProject/YourGroupFolderPath/File.swift --verbose # Pass your paramenters
+else
+  echo "Warning: Swift Variable Injector not installed, download from https://github.com/LucianoPAlmeida/variable-injector"
+fi
+```
+
+### Options
 
 We can ignore patterns that match $(ENV_VAR) to avoid the replace. 
 
