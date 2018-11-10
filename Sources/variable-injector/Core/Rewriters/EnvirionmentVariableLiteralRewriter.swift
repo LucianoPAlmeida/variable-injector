@@ -10,7 +10,7 @@ import SwiftSyntax
 
 public class EnvirionmentVariableLiteralRewriter: SyntaxRewriter {
     
-    static let envVarPatter: String = "\"\\$\\(\\w+\\)\""
+    static let envVarPattern: String = "\"\\$\\(\\w+\\)\""
     
     public var ignoredLiteralValues: Set<String> = []
     
@@ -33,7 +33,7 @@ public class EnvirionmentVariableLiteralRewriter: SyntaxRewriter {
         guard case .stringLiteral(let text) = token.tokenKind else { return token }
     
         //Matching ENV var pattern e.g. $(ENV_VAR)
-        guard text.matches(regex: EnvirionmentVariableLiteralRewriter.envVarPatter) else { return token }
+        guard text.matches(regex: EnvirionmentVariableLiteralRewriter.envVarPattern) else { return token }
         
         let envVar = extractTextEnvVariableName(text: text)
         
