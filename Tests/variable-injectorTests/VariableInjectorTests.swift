@@ -7,7 +7,7 @@ final class VariableInjectorTests: XCTestCase {
     let testSource = """
         import Foundation
 
-        class Envirionment {
+        class Environment {
             static var serverURL: String = "$(SERVER_URL)"
             var apiVersion: String = "$(API_VERSION)"
         }
@@ -19,12 +19,12 @@ final class VariableInjectorTests: XCTestCase {
     }
     
     func testVariableSubstitution() throws {
-        let stubEnvirionment = ["SERVER_URL": "http://ci.injected.server.url.com"]
+        let stubEnvironment = ["SERVER_URL": "http://ci.injected.server.url.com"]
         
         let url = Bundle(for: type(of: self)).bundleURL.appendingPathComponent("TestFile.swift")
         let sourceFile = try SyntaxTreeParser.parse(url)
         
-        let envVarRewriter = EnvirionmentVariableLiteralRewriter(envirionment: stubEnvirionment)
+        let envVarRewriter = EnvironmentVariableLiteralRewriter(environment: stubEnvironment)
         let result = envVarRewriter.visit(sourceFile)
         
         var contents: String = ""
@@ -37,12 +37,12 @@ final class VariableInjectorTests: XCTestCase {
     }
     
     func testVariableSubstitutionWithExclusion() throws {
-        let stubEnvirionment = ["SERVER_URL": "http://ci.injected.server.url.com", "API_VERSION": "v1"]
+        let stubEnvironment = ["SERVER_URL": "http://ci.injected.server.url.com", "API_VERSION": "v1"]
         
         let url = Bundle(for: type(of: self)).bundleURL.appendingPathComponent("TestFile.swift")
         let sourceFile = try SyntaxTreeParser.parse(url)
         
-        let envVarRewriter = EnvirionmentVariableLiteralRewriter(envirionment: stubEnvirionment, ignoredLiteralValues: ["SERVER_URL"])
+        let envVarRewriter = EnvironmentVariableLiteralRewriter(environment: stubEnvironment, ignoredLiteralValues: ["SERVER_URL"])
         let result = envVarRewriter.visit(sourceFile)
         
         var contents: String = ""

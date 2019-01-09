@@ -1,5 +1,5 @@
 //
-//  EnvirionmentVariableLiteralRewriter.swift
+//  EnvironmentVariableLiteralRewriter.swift
 //  VariableInjector
 //
 //  Created by Luciano Almeida on 02/11/18.
@@ -8,24 +8,24 @@
 import Foundation
 import SwiftSyntax
 
-public class EnvirionmentVariableLiteralRewriter: SyntaxRewriter {
+public class EnvironmentVariableLiteralRewriter: SyntaxRewriter {
     
     static let envVarPattern: String = "\"\\$\\(\\w+\\)\""
     
     public var ignoredLiteralValues: Set<String> = []
     
-    private var envirionment: [String: String] = [:]
+    private var environment: [String: String] = [:]
     
     public var logger: Logger?
     
-    public init(envirionment: [String: String] = ProcessInfo.processInfo.environment) {
-        self.envirionment = envirionment
+    public init(environment: [String: String] = ProcessInfo.processInfo.environment) {
+        self.environment = environment
     }
     
     public convenience init(
-        envirionment: [String: String] = ProcessInfo.processInfo.environment,
+        environment: [String: String] = ProcessInfo.processInfo.environment,
         ignoredLiteralValues: [String]) {
-        self.init(envirionment: envirionment)
+        self.init(environment: environment)
         self.ignoredLiteralValues = Set(ignoredLiteralValues)
     }
     
@@ -33,13 +33,13 @@ public class EnvirionmentVariableLiteralRewriter: SyntaxRewriter {
         guard case .stringLiteral(let text) = token.tokenKind else { return token }
     
         //Matching ENV var pattern e.g. $(ENV_VAR)
-        guard text.matches(regex: EnvirionmentVariableLiteralRewriter.envVarPattern) else { return token }
+        guard text.matches(regex: EnvironmentVariableLiteralRewriter.envVarPattern) else { return token }
         
         let envVar = extractTextEnvVariableName(text: text)
         
         guard shouldPerformSubstitution(for: envVar) else { return token }
         
-        guard let envValue = envirionment[envVar] else {
+        guard let envValue = environment[envVar] else {
             return token
         }
         logger?.log(message: "Injecting ENV_VAR: \(text), value: \(envValue)")

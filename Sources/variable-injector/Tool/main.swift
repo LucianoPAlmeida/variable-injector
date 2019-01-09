@@ -40,7 +40,7 @@ for file in files {
 
     let sourceFile = try SyntaxTreeParser.parse(url)
     
-    let envVarRewriter = EnvirionmentVariableLiteralRewriter(ignoredLiteralValues: varLiteralsToIgnore)
+    let envVarRewriter = EnvironmentVariableLiteralRewriter(ignoredLiteralValues: varLiteralsToIgnore)
     envVarRewriter.logger = logger
     let result = envVarRewriter.visit(sourceFile)
     
