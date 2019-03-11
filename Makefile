@@ -1,7 +1,7 @@
 usr_local ?= /usr/local
 
 bindir = $(usr_local)/bin
-libdir = $(usr_local)/libdir
+libdir = $(usr_local)/lib
 
 build:
 	swift build -c release --disable-sandbox
