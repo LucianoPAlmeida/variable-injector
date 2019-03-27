@@ -5,7 +5,7 @@
 //  Created by Luciano Almeida on 03/11/18.
 //
 public struct ArgumentsHandler {
-    internal(set) var _parsedArgs: [Argument] = []
+    var _parsedArgs: [Argument] = []
     
     public init(args: [String]) {
         _parsedArgs = ArgumentsHandler.arguments(from: args)
