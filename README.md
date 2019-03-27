@@ -23,7 +23,8 @@ cp -f x86_64-apple-macosx10.10/release/variable-injector /usr/local/bin/variable
 cp -f x86_64-apple-macosx10.10/release/libSwiftSyntax.dylib /usr/local/lib/libSwiftSyntax.dylib
 ```
 
-Or to install the lastest version just run the [install-binary.sh](scripts/install-binary.sh)
+To install the lastest version just run the [install-binary.sh](scripts/install-binary.sh)
+Or just clone the repo and run `cmake install`
 
 With that installed and on our `bin` folder, now we can use it.
 
