@@ -16,11 +16,17 @@ The project uses [SwiftSyntax](https://github.com/apple/swift-syntax) to perform
 We can manually download the binary from the [releases](https://github.com/LucianoPAlmeida/variable-injector/releases) and export to the path on the CI pipeline
 
 ```sh
+CURRENT_DIR="$PWD"
 cd /tmp
-curl -OL https://github.com/LucianoPAlmeida/variable-injector/releases/download/0.2.0/x86_64-apple-macosx10.10.zip
-unzip x86_64-apple-macosx10.10.zip
-cp -f x86_64-apple-macosx10.10/release/variable-injector /usr/local/bin/variable-injector
-cp -f x86_64-apple-macosx10.10/release/libSwiftSyntax.dylib /usr/local/lib/libSwiftSyntax.dylib
+curl -OL https://github.com/LucianoPAlmeida/variable-injector/releases/download/0.2.1/x86_64-apple-macosx.zip
+unzip x86_64-apple-macosx.zip
+cp -f .x86_64-apple-macosx/release/variable-injector /usr/local/bin/variable-injector
+
+rm ./x86_64-apple-macosx.zip
+rm -rf ./x86_64-apple-macosx
+rm -rf ./__MACOSX/
+
+cd "$CURRENT_DIR"
 ```
 
 To install the lastest version just run the [install-binary.sh](scripts/install-binary.sh)
