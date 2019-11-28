@@ -30,6 +30,11 @@ cd "$CURRENT_DIR"
 ```
 
 To install the lastest version just run the [install-binary.sh](scripts/install-binary.sh)
+
+```sh
+curl -ssl https://raw.githubusercontent.com/LucianoPAlmeida/variable-injector/master/scripts/install-binary.sh | sh
+```
+
 Or just clone the repo and run `cmake install`
 
 With that installed and on our `bin` folder, now we can use it.
