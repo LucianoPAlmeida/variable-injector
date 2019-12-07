@@ -44,6 +44,9 @@ With that installed and on our `bin` folder, now we can use it.
 
 For a detailed example of using this, check out the article [Continuous Integration Environment Variables in iOS projects using Swift](https://medium.com/@lucianoalmeida1/continuous-integration-environment-variables-in-ios-projects-using-swift-f72e50176a91) on [Medium](https://medium.com).
 
+**Note**
+If you having issues with Xcode11 use the version 0.3.0 of the tool.
+
 You should have a class or struct with your envirionment variables declaration following the $(VAR_NAME) pattern.
 Example:
 ```swift
