@@ -10,6 +10,7 @@ final class VariableInjectorTests: XCTestCase {
         class Environment {
             static var serverURL: String = "$(SERVER_URL)"
             var apiVersion: String = "$(API_VERSION)"
+            var notReplaceIt: String = "Do not replace it"
         }
     """
     
