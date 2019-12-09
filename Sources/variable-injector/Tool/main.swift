@@ -38,7 +38,7 @@ for file in files {
     logger?.log(message: "FILE: \(url.lastPathComponent)")
     logger?.log(message: "\(printSeparator)\n")
 
-    let sourceFile = try SyntaxTreeParser.parse(url)
+    let sourceFile = try SyntaxParser.parse(url)
     
     let envVarRewriter = EnvironmentVariableLiteralRewriter(ignoredLiteralValues: varLiteralsToIgnore)
     envVarRewriter.logger = logger

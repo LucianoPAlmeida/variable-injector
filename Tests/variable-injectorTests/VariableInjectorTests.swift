@@ -23,7 +23,7 @@ final class VariableInjectorTests: XCTestCase {
         let stubEnvironment = ["SERVER_URL": "http://ci.injected.server.url.com"]
         
         let url = Bundle(for: type(of: self)).bundleURL.appendingPathComponent("TestFile.swift")
-        let sourceFile = try SyntaxTreeParser.parse(url)
+        let sourceFile = try SyntaxParser.parse(url)
         
         let envVarRewriter = EnvironmentVariableLiteralRewriter(environment: stubEnvironment)
         let result = envVarRewriter.visit(sourceFile)
@@ -41,7 +41,7 @@ final class VariableInjectorTests: XCTestCase {
         let stubEnvironment = ["SERVER_URL": "http://ci.injected.server.url.com", "API_VERSION": "v1"]
         
         let url = Bundle(for: type(of: self)).bundleURL.appendingPathComponent("TestFile.swift")
-        let sourceFile = try SyntaxTreeParser.parse(url)
+        let sourceFile = try SyntaxParser.parse(url)
         
         let envVarRewriter = EnvironmentVariableLiteralRewriter(environment: stubEnvironment, ignoredLiteralValues: ["SERVER_URL"])
         let result = envVarRewriter.visit(sourceFile)
