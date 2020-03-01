@@ -14,16 +14,9 @@ final class VariableInjectorTests: XCTestCase {
         }
     """
     
-    override func setUp() {
-        // Work around https://bugs.swift.org/browse/SR-2866
-        try? testSource.write(to: Bundle(for: type(of: self)).bundleURL.appendingPathComponent("TestFile.swift"), atomically: true, encoding: .utf8)
-    }
-    
     func testVariableSubstitution() throws {
         let stubEnvironment = ["SERVER_URL": "http://ci.injected.server.url.com"]
-        
-        let url = Bundle(for: type(of: self)).bundleURL.appendingPathComponent("TestFile.swift")
-        let sourceFile = try SyntaxParser.parse(url)
+        let sourceFile = try SyntaxParser.parse(source: testSource)
         
         let envVarRewriter = EnvironmentVariableLiteralRewriter(environment: stubEnvironment)
         let result = envVarRewriter.visit(sourceFile)
@@ -39,10 +32,8 @@ final class VariableInjectorTests: XCTestCase {
     
     func testVariableSubstitutionWithExclusion() throws {
         let stubEnvironment = ["SERVER_URL": "http://ci.injected.server.url.com", "API_VERSION": "v1"]
-        
-        let url = Bundle(for: type(of: self)).bundleURL.appendingPathComponent("TestFile.swift")
-        let sourceFile = try SyntaxParser.parse(url)
-        
+        let sourceFile = try SyntaxParser.parse(source: testSource)
+
         let envVarRewriter = EnvironmentVariableLiteralRewriter(environment: stubEnvironment, ignoredLiteralValues: ["SERVER_URL"])
         let result = envVarRewriter.visit(sourceFile)
         
