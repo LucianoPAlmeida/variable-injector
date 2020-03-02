@@ -38,11 +38,7 @@ public struct VariableInjectorTool: ParsableCommand {
     //Separator
     let printSeparator = "=" * 70
     // Logger
-    var logger: Logger?
-    
-    if isVerbose {
-        logger = Logger()
-    }
+    let logger = isVerbose ? Logger() : nil
 
     // Loading files
     for file in files {
@@ -69,7 +65,7 @@ public struct VariableInjectorTool: ParsableCommand {
         var contents: String = ""
         result.write(to: &contents)
         
-        try? contents.write(to: url, atomically: true, encoding: .utf8)
+        try contents.write(to: url, atomically: true, encoding: .utf8)
         
         logger?.log(message: "\(printSeparator)\n")
         logger?.log(message: contents)
