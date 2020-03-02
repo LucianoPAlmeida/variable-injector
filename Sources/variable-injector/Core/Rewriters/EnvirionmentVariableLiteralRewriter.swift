@@ -15,15 +15,17 @@ public class EnvironmentVariableLiteralRewriter: SyntaxRewriter {
   private var environment: [String: String] = [:]
   public var logger: Logger?
   
-  public init(environment: [String: String] = ProcessInfo.processInfo.environment) {
+  public init(environment: [String: String]) {
     self.environment = environment
   }
   
   public convenience init(
-    environment: [String: String] = ProcessInfo.processInfo.environment,
-    ignoredLiteralValues: [String]) {
+    environment: [String: String],
+    ignoredLiteralValues: [String],
+    logger: Logger? = nil) {
     self.init(environment: environment)
     self.ignoredLiteralValues = Set(ignoredLiteralValues)
+    self.logger = logger
   }
   
   override public func visit(_ token: TokenSyntax) -> Syntax {

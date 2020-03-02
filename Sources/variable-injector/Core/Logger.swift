@@ -9,6 +9,6 @@ public class Logger {
     public init() {}
     
     public func log(message: @autoclosure () -> Any) {
-        print(message())
+      print(message())
     }
 }
