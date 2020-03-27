@@ -30,18 +30,18 @@ public class EnvironmentVariableLiteralRewriter: SyntaxRewriter {
   
   override public func visit(_ token: TokenSyntax) -> Syntax {
     // Matching ENV var pattern e.g. $(ENV_VAR)
-    guard matchesLiteralPattern(token) else { return token }
+    guard matchesLiteralPattern(token) else { return Syntax(token) }
     
-    guard let text = token.stringLiteral else { return token }
+    guard let text = token.stringLiteral else { return Syntax(token) }
     
     let envVar = extractTextEnvVariableName(text)
     
     guard shouldPerformSubstitution(for: envVar), let envValue = environment[envVar] else {
-      return token
+      return Syntax(token)
     }
     
     logger?.log(message: "Injecting ENV_VAR: \(text), value: \(envValue)")
-    return token.byReplacingStringLiteral(string: envValue)
+    return Syntax(token.byReplacingStringLiteral(string: envValue))
   }
   
   private func shouldPerformSubstitution(for text: String) -> Bool {
