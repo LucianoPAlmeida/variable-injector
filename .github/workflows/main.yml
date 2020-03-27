@@ -1,0 +1,26 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  Darwin:
+    name: Darwin
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        xcode: ['/Applications/Xcode_11.4.app/Contents/Developer']
+    steps:
+    - uses: actions/checkout@v1
+    - name: Test
+      run: |
+        swift build
+        swift test --enable-test-discovery 
+        bash <(curl -s https://codecov.io/bash) -J 'variable-injector'
