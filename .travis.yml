@@ -1,7 +1,0 @@
-language: swift
-osx_image: xcode11.4
-script:
-    - swift build
-    - swift test --enable-test-discovery 
-after_success:
-    - bash <(curl -s https://codecov.io/bash) -J 'variable-injector'
