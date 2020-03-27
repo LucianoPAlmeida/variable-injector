@@ -18,7 +18,7 @@ We can manually download the binary from the [releases](https://github.com/Lucia
 ```sh
 CURRENT_DIR="$PWD"
 cd /tmp
-curl -OL https://github.com/LucianoPAlmeida/variable-injector/releases/download/0.3.1/x86_64-apple-macosx.zip
+curl -OL https://github.com/LucianoPAlmeida/variable-injector/releases/download/0.3.2/x86_64-apple-macosx.zip
 unzip x86_64-apple-macosx.zip
 cp -f ./x86_64-apple-macosx/release/variable-injector /usr/local/bin/variable-injector
 
@@ -45,7 +45,7 @@ With that installed and on our `bin` folder, now we can use it.
 For a detailed example of using this, check out the article [Continuous Integration Environment Variables in iOS projects using Swift](https://medium.com/@lucianoalmeida1/continuous-integration-environment-variables-in-ios-projects-using-swift-f72e50176a91) on [Medium](https://medium.com).
 
 **Note**
-If you having issues with Xcode11 use the version 0.3.1 of the tool.
+If you having issues with Xcode11 use the version 0.3.2 of the tool.
 
 You should have a class or struct with your envirionment variables declaration following the $(VAR_NAME) pattern.
 Example:
