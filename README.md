@@ -1,6 +1,8 @@
 # Swift Variable Injector
 
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://opensource.org/licenses/MIT)
+[![Build Status](https://github.com/LucianoPAlmeida/variable-injector/workflows/CI/badge.svg?branch=master)](https://github.com/LucianoPAlmeida/variable-injector/actions)
+
 [![Travis](https://img.shields.io/travis/LucianoPAlmeida/variable-injector.svg)](https://travis-ci.org/LucianoPAlmeida/variable-injector)
 [![Swift](https://img.shields.io/badge/Swift-5.1-orange.svg)](https://swift.org)
 [![Xcode](https://img.shields.io/badge/Xcode-11.3-blue.svg)](https://developer.apple.com/xcode)
