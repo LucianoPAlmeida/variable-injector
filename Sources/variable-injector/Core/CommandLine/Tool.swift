@@ -4,6 +4,7 @@
 //
 //  Created by Luciano Almeida on 03/11/18.
 //
+
 import Foundation
 import SwiftSyntax
 import ArgumentParser
@@ -16,15 +17,15 @@ public struct VariableInjectorTool: ParsableCommand {
   
   @Flag(name: NameSpecification(arrayLiteral: .customLong("verbose"), .customShort("v")),
         help: "Indicates if the tool will run in verbose mode or not")
-  public var isVerbose: Bool
+  public var isVerbose: Bool = false
   
   @Option(name: NameSpecification(arrayLiteral: .customLong("file"), .customShort("f")),
           help: "The path(s) to the file(s) where the tool should run.")
-  public var files: [String]
+  public var files: [String] = []
   
   @Option(name: NameSpecification(arrayLiteral: .customLong("ignore"), .customShort("i")),
           help: "The names of variables that will be ignored even if that matches $(ENV_VAR) to avoid the replacing")
-  public var varLiteralsToIgnore: [String]
+  public var varLiteralsToIgnore: [String] = []
     
   public init() {}
   
