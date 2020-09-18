@@ -1,6 +1,6 @@
 CURRENT_DIR="$PWD"
 cd /tmp
-curl -OL https://github.com/LucianoPAlmeida/variable-injector/releases/download/0.3.2/x86_64-apple-macosx.zip
+curl -OL https://github.com/LucianoPAlmeida/variable-injector/releases/download/0.3.3/x86_64-apple-macosx.zip
 unzip x86_64-apple-macosx.zip
 cp -f ./x86_64-apple-macosx/release/variable-injector /usr/local/bin/variable-injector
 
