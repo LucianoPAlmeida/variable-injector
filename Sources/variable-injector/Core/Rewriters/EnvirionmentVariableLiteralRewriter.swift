@@ -67,7 +67,10 @@ extension EnvironmentVariableLiteralRewriter {
   func matchesLiteralPattern(_ token: TokenSyntax) -> Bool {
     switch token.tokenKind {
     case .stringLiteral(let text), .stringSegment(let text):
-      return text.matches(regex: stringLiteralEnvVarPattern)
+      return text.range(of: stringLiteralEnvVarPattern,
+                        options: .regularExpression,
+                        range: nil,
+                        locale: nil) != nil
     default:
       return false
     }

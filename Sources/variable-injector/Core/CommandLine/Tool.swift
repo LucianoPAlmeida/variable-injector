@@ -13,17 +13,17 @@ public struct VariableInjectorTool: ParsableCommand {
   
   public static let configuration = CommandConfiguration(abstract:
     "Variable injector is a very simple project with the goal of inject CI" +
-    "pipelines environment variables values into Swift code static values before compilation")
+    "pipelines environment variables values into Swift code static members before compilation")
   
-  @Flag(name: NameSpecification(arrayLiteral: .customLong("verbose"), .customShort("v")),
+  @Flag(name: [.customLong("verbose"), .customShort("v")],
         help: "Indicates if the tool will run in verbose mode or not")
   public var isVerbose: Bool = false
   
-  @Option(name: NameSpecification(arrayLiteral: .customLong("file"), .customShort("f")),
+  @Option(name: [.customLong("file"), .customShort("f")],
           help: "The path(s) to the file(s) where the tool should run.")
   public var files: [String] = []
   
-  @Option(name: NameSpecification(arrayLiteral: .customLong("ignore"), .customShort("i")),
+  @Option(name: [.customLong("ignore"), .customShort("i")],
           help: "The names of variables that will be ignored even if that matches $(ENV_VAR) to avoid the replacing")
   public var varLiteralsToIgnore: [String] = []
     
