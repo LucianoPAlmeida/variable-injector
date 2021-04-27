@@ -181,3 +181,5 @@ xcuserdata
 **/xcshareddata/WorkspaceSettings.xcsettings
 
 # End of https://www.gitignore.io/api/swift,xcode,macos,swiftpm,swiftpackagemanager
+
+*.swp
