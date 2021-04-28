@@ -180,6 +180,7 @@ xcuserdata
 /*.gcno
 **/xcshareddata/WorkspaceSettings.xcsettings
 
-# End of https://www.gitignore.io/api/swift,xcode,macos,swiftpm,swiftpackagemanager
-
+### Unix Swap Files ###
 *.swp
+
+# End of https://www.gitignore.io/api/swift,xcode,macos,swiftpm,swiftpackagemanager
