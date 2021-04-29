@@ -1,4 +1,4 @@
-// swift-tools-version:5.2.0
+// swift-tools-version:5.4.0
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -12,7 +12,7 @@ let package = Package(
             targets: ["variable-injector"]),        
     ],
     dependencies: [
-        .package(name: "SwiftSyntax", url: "https://github.com/apple/swift-syntax.git", .exact("0.50300.0")),
+        .package(name: "SwiftSyntax", url: "https://github.com/apple/swift-syntax.git", .exact("0.50400.0")),
         .package(name: "swift-argument-parser", url: "https://github.com/apple/swift-argument-parser.git", .exact("0.3.1"))
     ],
     targets: [
@@ -25,7 +25,7 @@ let package = Package(
                 .product(name: "ArgumentParser", package: "swift-argument-parser")
             ],
             path: "Sources/variable-injector/Core"),
-        .target(
+        .executableTarget(
             name: "variable-injector",
             dependencies: ["variable-injector-core"],
             path: "Sources/variable-injector/Tool"),

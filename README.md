@@ -2,8 +2,8 @@
 
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://github.com/LucianoPAlmeida/variable-injector/workflows/CI/badge.svg?branch=master)](https://github.com/LucianoPAlmeida/variable-injector/actions)
-[![Swift](https://img.shields.io/badge/Swift-5.3-orange.svg)](https://swift.org)
-[![Xcode](https://img.shields.io/badge/Xcode-12-blue.svg)](https://developer.apple.com/xcode)
+[![Swift](https://img.shields.io/badge/Swift-5.4-orange.svg)](https://swift.org)
+[![Xcode](https://img.shields.io/badge/Xcode-12.5-blue.svg)](https://developer.apple.com/xcode)
 [![SPM](https://img.shields.io/badge/SPM-orange.svg)](https://swift.org/package-manager/)
 
 Variable injector is a very simple project with the goal of inject CI pipelines environment variables values into **Swift** code  static values before compilation and Continuous deployment to a specific environment(Development, Testing or Production) where we can define the values injected for each build and deployment e.g. an API URL that the App uses and is different for each environment. Also, it allows us to not expose our production keys and values in statically in our code.
@@ -12,30 +12,9 @@ The project uses [SwiftSyntax](https://github.com/apple/swift-syntax) to perform
 
 ## Installation
 
-### Manually Download
-We can manually download the binary from the [releases](https://github.com/LucianoPAlmeida/variable-injector/releases) and export to the path on the CI pipeline
+### Manually Instalation
 
-```sh
-CURRENT_DIR="$PWD"
-cd /tmp
-curl -OL https://github.com/LucianoPAlmeida/variable-injector/releases/download/0.3.3/x86_64-apple-macosx.zip
-unzip x86_64-apple-macosx.zip
-cp -f ./x86_64-apple-macosx/release/variable-injector /usr/local/bin/variable-injector
-
-rm ./x86_64-apple-macosx.zip
-rm -rf ./x86_64-apple-macosx
-rm -rf ./__MACOSX/
-
-cd "$CURRENT_DIR"
-```
-
-To install the lastest version just run the [install-binary.sh](scripts/install-binary.sh)
-
-```sh
-curl -ssl https://raw.githubusercontent.com/LucianoPAlmeida/variable-injector/master/scripts/install-binary.sh | sh
-```
-
-Or just clone the repo and run `make install`
+Just clone the repo and run `make install`
 
 With that installed and on our `bin` folder, now we can use it.
 
