@@ -12,7 +12,7 @@ The project uses [SwiftSyntax](https://github.com/apple/swift-syntax) to perform
 
 ## Installation
 
-### Manually Instalation
+### Manually Installation
 
 Just clone the repo and run `make install`
 
@@ -24,9 +24,9 @@ With that installed and on our `bin` folder, now we can use it.
 For a detailed example of using this, check out the article [Continuous Integration Environment Variables in iOS projects using Swift](https://medium.com/@lucianoalmeida1/continuous-integration-environment-variables-in-ios-projects-using-swift-f72e50176a91) on [Medium](https://medium.com).
 
 **Note**
-If you having issues with Xcode11 use the version 0.3.3 of the tool.
+If you having issues with XCode 11 use the version 0.3.3 of the tool.
 
-You should have a class or struct with your envirionment variables declaration following the $(VAR_NAME) pattern.
+You should have a class or struct with your environment variables declaration following the $(VAR_NAME) pattern.
 Example:
 ```swift
    struct CI {
@@ -60,7 +60,7 @@ You can add the script call for variable replacement on your build phases. We ju
 
 ```sh
 if which variable-injector >/dev/null; then
-  variable-injector --file ${SRCROOT}/YourProject/YourGroupFolderPath/File.swift --verbose # Pass your paramenters
+  variable-injector --file ${SRCROOT}/YourProject/YourGroupFolderPath/File.swift --verbose # Pass your parameters
 else
   echo "Warning: Swift Variable Injector not installed, download from https://github.com/LucianoPAlmeida/variable-injector"
 fi
@@ -81,7 +81,7 @@ And also, to see the logs of variables, values and source output you can use `--
 The verbose mode you print the values of your environment variables on the logs. So you may be careful and use it only for debug porpuses.
 
 ```sh
-variable-injector --file ${SRCROOT}/Envirionment/CI.swift --verbose
+variable-injector --file ${SRCROOT}/Environment/CI.swift --verbose
 
 ```
 
