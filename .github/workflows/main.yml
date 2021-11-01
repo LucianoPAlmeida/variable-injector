@@ -14,8 +14,6 @@ jobs:
   Darwin:
     name: Darwin
     runs-on: macos-latest
-    env: 
-      DEVELOPER_DIR: /Applications/Xcode_13.0.app/Contents/Developer
     steps:
     - uses: actions/checkout@v1
     - name: Test
