@@ -1,5 +1,6 @@
 import XCTest
 import SwiftSyntax
+import SwiftSyntaxParser
 import variable_injector_core
 
 final class VariableInjectorTests: XCTestCase {
