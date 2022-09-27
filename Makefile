@@ -18,4 +18,11 @@ uninstall:
 clean:
 	rm -rf .build
 
-.PHONY: build install uninstall clean
+release:
+	swift build -c release --triple arm64-apple-macosx
+	swift build -c release --triple x86_64-apple-macosx10.15
+	rm -f .build/arm64-apple-macosx/build.db
+	rm -f .build/x86_64-apple-macosx/build.db
+	cd .build && zip -r ./arm64-apple-macosx.zip ./arm64-apple-macosx
+	cd .build && zip -r ./x86_64-apple-macosx.zip ./x86_64-apple-macosx
+.PHONY: build install uninstall clean release
