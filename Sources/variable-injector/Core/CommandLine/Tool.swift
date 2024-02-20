@@ -55,10 +55,14 @@ public struct VariableInjectorTool: ParsableCommand {
         logger?.log(message: "FILE: \(url.lastPathComponent)")
         logger?.log(message: "\(printSeparator)\n")
 
-        // Read contents of the file
-        let sourceCode = try String(contentsOf: url)
-        // Parse the source code as a string
-        let sourceFile = Parser.parse(source: sourceCode)
+        var contentsFile: String = ""
+        do {
+            contentsFile = try String(contentsOf: url)
+        } catch {
+            logger?.log(message: "Could not get content of \(url). Error: \(error)")
+            continue
+        }
+        let sourceFile = Parser.parse(source: contentsFile)
 
         let envVarRewriter = EnvironmentVariableLiteralRewriter(
                                 environment: ProcessInfo.processInfo.environment,
