@@ -12,7 +12,7 @@ let package = Package(
             targets: ["variable-injector"]),        
     ],
     dependencies: [
-        .package(name: "SwiftSyntax", url: "https://github.com/apple/swift-syntax.git", .exact("0.50700.0")),
+        .package(name: "SwiftSyntax", url: "https://github.com/apple/swift-syntax.git", .exact("509.0.0")),
         .package(name: "swift-argument-parser", url: "https://github.com/apple/swift-argument-parser.git", .exact("1.1.1"))
     ],
     targets: [
@@ -22,7 +22,6 @@ let package = Package(
             name: "variable-injector-core",
             dependencies: [
                 .product(name: "SwiftSyntax", package: "SwiftSyntax"),
-                .product(name: "SwiftSyntaxParser", package: "SwiftSyntax"),
                 .product(name: "ArgumentParser", package: "swift-argument-parser")
             ],
             path: "Sources/variable-injector/Core"),
