@@ -7,7 +7,7 @@
 
 import Foundation
 import SwiftSyntax
-import SwiftSyntaxParser
+import SwiftParser
 import ArgumentParser
 
 public struct VariableInjectorTool: ParsableCommand {
@@ -55,8 +55,11 @@ public struct VariableInjectorTool: ParsableCommand {
         logger?.log(message: "FILE: \(url.lastPathComponent)")
         logger?.log(message: "\(printSeparator)\n")
 
-        let sourceFile = try SyntaxParser.parse(url)
-        
+        // Read contents of the file
+        let sourceCode = try String(contentsOf: url)
+        // Parse the source code as a string
+        let sourceFile = Parser.parse(source: sourceCode)
+
         let envVarRewriter = EnvironmentVariableLiteralRewriter(
                                 environment: ProcessInfo.processInfo.environment,
                                 ignoredLiteralValues: varLiteralsToIgnore,

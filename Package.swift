@@ -5,6 +5,9 @@ import PackageDescription
 
 let package = Package(
     name: "variable-injector",
+    platforms: [
+        .iOS(.v13), .macOS(.v11)
+    ],
     products: [
         // Products define the executables and libraries produced by a package, and make them visible to other packages.
         .executable(
@@ -22,6 +25,7 @@ let package = Package(
             name: "variable-injector-core",
             dependencies: [
                 .product(name: "SwiftSyntax", package: "swift-syntax"),
+                .product(name: "SwiftParser", package: "swift-syntax"),
                 .product(name: "ArgumentParser", package: "swift-argument-parser")
             ],
             path: "Sources/variable-injector/Core"),
