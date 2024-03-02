@@ -28,20 +28,20 @@ public class EnvironmentVariableLiteralRewriter: SyntaxRewriter {
     self.logger = logger
   }
   
-  override public func visit(_ token: TokenSyntax) -> Syntax {
+  override public func visit(_ token: TokenSyntax) -> TokenSyntax {
     // Matching ENV var pattern e.g. $(ENV_VAR)
-    guard matchesLiteralPattern(token) else { return Syntax(token) }
-    
-    guard let text = token.stringLiteral else { return Syntax(token) }
-    
+    guard matchesLiteralPattern(token) else { return token }
+
+    guard let text = token.stringLiteral else { return token }
+
     let envVar = extractTextEnvVariableName(text)
     
     guard shouldPerformSubstitution(for: envVar), let envValue = environment[envVar] else {
-      return Syntax(token)
+      return token
     }
     
     logger?.log(message: "Injecting ENV_VAR: \(text), value: \(envValue)")
-    return Syntax(token.byReplacingStringLiteral(string: envValue))
+    return token.byReplacingStringLiteral(string: envValue)
   }
   
   private func shouldPerformSubstitution(for text: String) -> Bool {
@@ -66,7 +66,7 @@ public class EnvironmentVariableLiteralRewriter: SyntaxRewriter {
 extension EnvironmentVariableLiteralRewriter {
   func matchesLiteralPattern(_ token: TokenSyntax) -> Bool {
     switch token.tokenKind {
-    case .stringLiteral(let text), .stringSegment(let text):
+    case .stringSegment(let text):
       return text.range(of: stringLiteralEnvVarPattern,
                         options: .regularExpression,
                         range: nil,

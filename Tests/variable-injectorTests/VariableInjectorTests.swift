@@ -1,6 +1,6 @@
 import XCTest
 import SwiftSyntax
-import SwiftSyntaxParser
+import SwiftParser
 import variable_injector_core
 
 final class VariableInjectorTests: XCTestCase {
@@ -17,8 +17,8 @@ final class VariableInjectorTests: XCTestCase {
     
     func testVariableSubstitution() throws {
         let stubEnvironment = ["SERVER_URL": "http://ci.injected.server.url.com"]
-        let sourceFile = try SyntaxParser.parse(source: testSource)
-        
+        let sourceFile = Parser.parse(source: testSource)
+
         let envVarRewriter = EnvironmentVariableLiteralRewriter(environment: stubEnvironment)
         let result = envVarRewriter.visit(sourceFile)
         
@@ -33,7 +33,7 @@ final class VariableInjectorTests: XCTestCase {
     
     func testVariableSubstitutionWithExclusion() throws {
         let stubEnvironment = ["SERVER_URL": "http://ci.injected.server.url.com", "API_VERSION": "v1"]
-        let sourceFile = try SyntaxParser.parse(source: testSource)
+        let sourceFile = Parser.parse(source: testSource)
 
         let envVarRewriter = EnvironmentVariableLiteralRewriter(environment: stubEnvironment, ignoredLiteralValues: ["SERVER_URL"])
         let result = envVarRewriter.visit(sourceFile)

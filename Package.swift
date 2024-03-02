@@ -1,10 +1,17 @@
-// swift-tools-version:5.5.0
+// swift-tools-version:5.7
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
 let package = Package(
     name: "variable-injector",
+    platforms: [
+      .macOS(.v10_15),
+      .iOS(.v13),
+      .tvOS(.v13),
+      .watchOS(.v6),
+      .macCatalyst(.v13),
+    ],
     products: [
         // Products define the executables and libraries produced by a package, and make them visible to other packages.
         .executable(
@@ -12,8 +19,8 @@ let package = Package(
             targets: ["variable-injector"]),        
     ],
     dependencies: [
-        .package(name: "SwiftSyntax", url: "https://github.com/apple/swift-syntax.git", .exact("0.50700.0")),
-        .package(name: "swift-argument-parser", url: "https://github.com/apple/swift-argument-parser.git", .exact("1.1.1"))
+        .package(url: "https://github.com/apple/swift-syntax.git", exact: "509.0.0"),
+        .package(url: "https://github.com/apple/swift-argument-parser.git", exact: "1.3.0")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -21,8 +28,8 @@ let package = Package(
         .target(
             name: "variable-injector-core",
             dependencies: [
-                .product(name: "SwiftSyntax", package: "SwiftSyntax"),
-                .product(name: "SwiftSyntaxParser", package: "SwiftSyntax"),
+                .product(name: "SwiftSyntax", package: "swift-syntax"),
+                .product(name: "SwiftParser", package: "swift-syntax"),
                 .product(name: "ArgumentParser", package: "swift-argument-parser")
             ],
             path: "Sources/variable-injector/Core"),

@@ -10,7 +10,7 @@ import SwiftSyntax
 extension TokenSyntax {
   var stringLiteral: String? {
     switch tokenKind {
-    case .stringLiteral(let text), .stringSegment(let text):
+    case .stringSegment(let text):
       return text
     default:
       return nil
@@ -19,13 +19,10 @@ extension TokenSyntax {
   
   func byReplacingStringLiteral(string: String) -> TokenSyntax {
     switch tokenKind {
-    case .stringLiteral:
-      return withKind(.stringLiteral("\"\(string)\""))
     case .stringSegment:
-      return withKind(.stringSegment("\(string)"))
+      return .stringSegment("\(string)")
     default:
       return self
     }
   }
-    
 }

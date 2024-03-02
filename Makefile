@@ -8,7 +8,6 @@ build:
 	swift build -c release --disable-sandbox
 
 install: build
-	sudo cp "$(SWIFT_PATH)/../lib/swift/macosx/lib_InternalSwiftSyntaxParser.dylib" "$(LIB_DIR)/"
 	install_name_tool -add_rpath $(LIB_DIR) .build/$(PLATFORM)-apple-macosx/release/variable-injector
 	install ".build/$(PLATFORM)-apple-macosx/release/variable-injector" "$(BIN_DIR)"
 
