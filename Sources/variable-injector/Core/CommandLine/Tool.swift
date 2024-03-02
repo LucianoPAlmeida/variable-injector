@@ -38,7 +38,7 @@ public struct VariableInjectorTool: ParsableCommand {
   
   public func run() throws {
     //Separator
-    let printSeparator = "=" * 70
+    let printSeparator = String(repeating: "=", count: 70)
     // Logger
     let logger = isVerbose ? Logger() : nil
 
