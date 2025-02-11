@@ -1,3 +1,10 @@
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+
+# :warning: Deprecated :warning:
+
+This tool is deprecated and will no longer be updated by the maintainer. 
+
+
 # Swift Variable Injector
 
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://opensource.org/licenses/MIT)
